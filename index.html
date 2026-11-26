@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pizzería Napolitana Bella - Tradición y Sabor a la Leña</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="luigi-avatar.css?v=2">
+  <style>
+    .ai-chat-layout { display: grid; grid-template-columns: minmax(0, 1fr) 230px; gap: 1.25rem; align-items: stretch; }
+    .ai-chat-layout .integrated-chat-window { width: 100%; min-width: 0; }
+    .chat-suggestions-panel { display: flex; flex-direction: column; gap: .75rem; padding: 1.25rem; background: #fff; border: 1px solid #eee; border-radius: 1rem; }
+    .chat-suggestions-panel .chips-label { margin-bottom: .25rem; font-weight: 700; }
+    .chat-suggestions-panel .ai-chip { width: 100%; text-align: left; }
+    @media (max-width: 700px) { .ai-chat-layout { grid-template-columns: 1fr; } }
+  </style>
+  <style>
+    .ai-options-card { max-width: 1000px; margin: 0 auto; padding: clamp(1.5rem, 4vw, 2.5rem); background: #fff; border: 1px solid #eee7e1; border-radius: 1.25rem; box-shadow: 0 16px 40px rgba(44, 30, 24, .08); }
+    .ai-options-heading { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+    .ai-options-heading .chef-avatar { display: grid; place-items: center; width: 3.5rem; height: 3.5rem; border-radius: 50%; background: #f4ecff; font-size: 1.75rem; }
+    .ai-options-heading h3, .ai-option-card h4 { margin: 0; }
+    .ai-options-heading p, .ai-option-card p { margin: .35rem 0 0; color: #6f6a68; }
+    .ai-options-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+    .ai-option-card { display: flex; align-items: center; gap: 1rem; min-height: 92px; padding: 1.1rem 1.25rem; border: 1px solid #eadfd7; border-radius: .9rem; background: #fffdfa; }
+    .ai-option-icon { display: grid; place-items: center; flex: 0 0 2.75rem; width: 2.75rem; height: 2.75rem; border-radius: 50%; background: #f8eee8; font-size: 1.3rem; }
+    @media (max-width: 640px) { .ai-options-grid { grid-template-columns: 1fr; } }
+    .ai-option-card { width: 100%; border: 1px solid #eadfd7; font: inherit; color: inherit; text-align: left; cursor: pointer; transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease; }
+    .ai-option-card:hover { border-color: #e63946; box-shadow: 0 8px 20px rgba(44, 30, 24, .08); transform: translateY(-2px); }
+    .ai-option-card:focus-visible { outline: 3px solid #9b5de5; outline-offset: 3px; }
+    .ai-option-card strong { display: block; }
+    .ai-option-description { display: block; margin-top: .35rem; color: #6f6a68; }  </style>
+</head>
+<body>
+
+  <!-- Barra de aviso superior -->
+  <div class="top-announcement">
+    <div class="container announcement-content">
+      <span>🍕 <strong>Envío Gratis</strong> en pedidos mayores a $25 | Código: <strong>BELLA25</strong></span>
+      <a href="#ofertas" class="announcement-link">Ver promociones &rarr;</a>
+    </div>
+  </div>
+
+  <!-- Navegación principal -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="#" class="logo">
+        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2L2 22h20L12 2z" fill="#e63946" stroke="#e63946"/>
+          <circle cx="12" cy="11" r="1.5" fill="#fff"/>
+          <circle cx="9" cy="16" r="1.5" fill="#fff"/>
+          <circle cx="15" cy="16" r="1.5" fill="#fff"/>
+        </svg>
+        <span class="logo-text">Bella <span>Napoli</span></span>
+      </a>
+
+      <nav class="nav-menu" id="navMenu">
+        <ul class="nav-list">
+          <li><a href="#inicio" class="nav-link active">Inicio</a></li>
+          <li><a href="#ofertas" class="nav-link">Ofertas</a></li>
+          <li><a href="#populares" class="nav-link">Pizzas Populares</a></li>
+          <li><a href="#asistente-ia" class="nav-link nav-link-ai">✨ Asistente IA</a></li>
+          <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
+          <li><a href="#contacto" class="nav-link">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="tel:+123456789" class="phone-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+          <span class="phone-text">(55) 8900-PIZZA</span>
+        </a>
+
+        <button class="cart-btn" id="cartBtn" aria-label="Ver carrito">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+          <span class="cart-badge" id="cartBadge">0</span>
+        </button>
+
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Abrir menú">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Banner Principal (Hero con Ofertas dinámicas) -->
+    <section class="hero-section" id="inicio">
+      <div class="hero-overlay"></div>
+      <div class="container hero-container">
+        <div class="hero-content">
+          <span class="hero-pill">🔥 100% Horno de Leña Tradicional</span>
+          <h1 class="hero-title">El auténtico sabor italiano directo a tu mesa</h1>
+          <p class="hero-subtitle">Masa madre madurada durante 48 horas, mozzarella fior di latte y tomates San Marzano. ¡Déjate conquistar por cada mordida!</p>
+          <div class="hero-buttons">
+            <a href="#populares" class="btn btn-primary">
+              Ordenar Ahora
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+            <a href="#ofertas" class="btn btn-outline">Ver Promociones</a>
+          </div>
+
+          <div class="hero-features">
+            <div class="feature-item">
+              <span class="feature-icon">⏱️</span>
+              <div>
+                <strong>Entrega en 30 min</strong>
+                <small>O tu pizza es gratis</small>
+              </div>
+            </div>
+            <div class="feature-item">
+              <span class="feature-icon">🧀</span>
+              <div>
+                <strong>Queso 100% Artesanal</strong>
+                <small>Ingredientes D.O.P.</small>
+              </div>
+            </div>
+            <div class="feature-item">
+              <span class="feature-icon">⭐</span>
+              <div>
+                <strong>4.9 / 5 Estrellas</strong>
+                <small>+2,500 clientes felices</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-pizza-card">
+            <div class="offer-floating-tag">
+              <span class="discount-percent">-30%</span>
+              <span class="discount-label">En tu 1er Pedido</span>
+            </div>
+            <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=900&q=80" alt="Pizza Napolitana Recién Horneada" class="hero-pizza-img">
+            <div class="hero-pizza-info">
+              <h3>Especial de la Casa: Napolitana D.O.C.</h3>
+              <p>Salsa de tomate casera, albahaca fresca y queso mozzarella fundido a 450°C.</p>
+              <div class="hero-price-row">
+                <span class="price-current">$14.99</span>
+                <span class="price-old">$21.50</span>
+                <button class="btn btn-sm btn-primary add-to-cart-btn" data-id="promo-hero" data-name="Napolitana D.O.C." data-price="14.99">
+                  Añadir al pedido
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección de Ofertas Especiales -->
+    <section class="section offers-section" id="ofertas">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Combos & Ahorro</span>
+          <h2 class="section-title">Ofertas Calientes de la Semana</h2>
+          <p class="section-subtitle">Aprovecha nuestras promociones exclusivas por tiempo limitado diseñadas para compartir.</p>
+        </div>
+
+        <div class="offers-grid">
+          <!-- Oferta 1 -->
+          <div class="offer-card featured">
+            <div class="offer-ribbon">MÁS POPULAR</div>
+            <div class="offer-body">
+              <span class="offer-deal">Combo Familiar 2x1</span>
+              <h3 class="offer-title">Martes y Jueves de 2x1</h3>
+              <p class="offer-desc">Compra 1 pizza familiar de cualquier especialidad y llévate la segunda totalmente gratis.</p>
+              <ul class="offer-perks">
+                <li>✓ Válido en tamaño Familiar (12 porciones)</li>
+                <li>✓ Incluye 2 salsas de la casa</li>
+                <li>✓ Válido para entrega y recoger</li>
+              </ul>
+              <div class="offer-footer">
+                <div class="offer-price">
+                  <span class="from">Desde</span>
+                  <span class="amount">$24.90</span>
+                </div>
+                <button class="btn btn-primary add-to-cart-btn" data-id="oferta-2x1" data-name="Combo Familiar 2x1" data-price="24.90">Aprovechar Oferta</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Oferta 2 -->
+          <div class="offer-card">
+            <div class="offer-body">
+              <span class="offer-deal">Combo Fiesta</span>
+              <h3 class="offer-title">Pack Amigos & Pizza</h3>
+              <p class="offer-desc">2 Pizzas Medianas a elección + 1 Orden de Palitos de Ajo + Refresco de 1.5L.</p>
+              <ul class="offer-perks">
+                <li>✓ Elige cualquier especialidad clásica</li>
+                <li>✓ Pan de ajo con queso derretido</li>
+                <li>✓ Bebida a elección</li>
+              </ul>
+              <div class="offer-footer">
+                <div class="offer-price">
+                  <span class="from">Antes <del>$32.00</del></span>
+                  <span class="amount">$22.50</span>
+                </div>
+                <button class="btn btn-outline-dark add-to-cart-btn" data-id="oferta-pack" data-name="Pack Amigos & Pizza" data-price="22.50">Aprovechar Oferta</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Oferta 3 -->
+          <div class="offer-card">
+            <div class="offer-body">
+              <span class="offer-deal">Almuerzo Express</span>
+              <h3 class="offer-title">Combo Personal Napolitano</h3>
+              <p class="offer-desc">1 Pizza Personal (4 porciones) + Bebida de 500ml + Postre cannoli italiano.</p>
+              <ul class="offer-perks">
+                <li>✓ Listo en menos de 15 minutos</li>
+                <li>✓ Disponible de 12:00 PM a 4:00 PM</li>
+                <li>✓ Cannoli relleno de ricotta dulce</li>
+              </ul>
+              <div class="offer-footer">
+                <div class="offer-price">
+                  <span class="from">Precio especial</span>
+                  <span class="amount">$10.99</span>
+                </div>
+                <button class="btn btn-outline-dark add-to-cart-btn" data-id="oferta-personal" data-name="Combo Personal Napolitano" data-price="10.99">Aprovechar Oferta</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección de Pizzas Populares -->
+    <section class="section popular-section" id="populares">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Nuestras Favoritas</span>
+          <h2 class="section-title">Pizzas Populares</h2>
+          <p class="section-subtitle">Las creaciones más pedidas por nuestros clientes, preparadas al momento con ingredientes prémium.</p>
+        </div>
+
+        <!-- Filtros interactivos -->
+        <div class="menu-filters">
+          <button class="filter-btn active" data-filter="all">Todas</button>
+          <button class="filter-btn" data-filter="clasicas">Clásicas</button>
+          <button class="filter-btn" data-filter="especiales">Especiales</button>
+          <button class="filter-btn" data-filter="vegetarianas">Vegetarianas</button>
+        </div>
+
+        <!-- Cuadrícula de Pizzas -->
+        <div class="pizzas-grid" id="pizzasContainer">
+
+          <!-- Pizza 1 -->
+          <article class="pizza-card" data-category="clasicas">
+            <div class="pizza-img-wrapper">
+              <span class="pizza-badge best-seller">Más Vendida</span>
+              <img src="https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&w=700&q=80" alt="Pizza Margherita Clásica" class="pizza-img" loading="lazy">
+            </div>
+            <div class="pizza-content">
+              <div class="pizza-rating">
+                <span class="stars">★★★★★</span>
+                <span class="review-count">(420+)</span>
+              </div>
+              <h3 class="pizza-name">Margherita Tradizionale</h3>
+              <p class="pizza-ingredients">Tomates San Marzano, mozzarella fresca fior di latte, albahaca orgánica, aceite de oliva virgen extra y masa madre.</p>
+              <div class="pizza-bottom">
+                <div class="pizza-price-box">
+                  <span class="price-label">Precio</span>
+                  <span class="pizza-price">$13.50</span>
+                </div>
+                <button class="btn-order add-to-cart-btn" data-id="pizza-1" data-name="Margherita Tradizionale" data-price="13.50">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                  Añadir
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Pizza 2 -->
+          <article class="pizza-card" data-category="clasicas">
+            <div class="pizza-img-wrapper">
+              <span class="pizza-badge hot">Favorita</span>
+              <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=700&q=80" alt="Pizza Pepperoni Suprema" class="pizza-img" loading="lazy">
+            </div>
+            <div class="pizza-content">
+              <div class="pizza-rating">
+                <span class="stars">★★★★★</span>
+                <span class="review-count">(510+)</span>
+              </div>
+              <h3 class="pizza-name">Pepperoni Suprema</h3>
+              <p class="pizza-ingredients">Doble porción de pepperoni artesanal curado, queso mozzarella gratinado y un toque aromático de orégano silvestre.</p>
+              <div class="pizza-bottom">
+                <div class="pizza-price-box">
+                  <span class="price-label">Precio</span>
+                  <span class="pizza-price">$15.90</span>
+                </div>
+                <button class="btn-order add-to-cart-btn" data-id="pizza-2" data-name="Pepperoni Suprema" data-price="15.90">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                  Añadir
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Pizza 3 -->
+          <article class="pizza-card" data-category="especiales">
+            <div class="pizza-img-wrapper">
+              <span class="pizza-badge chef">Chef Special</span>
+              <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=700&q=80" alt="Pizza BBQ Smoked Bacon" class="pizza-img" loading="lazy">
+            </div>
+            <div class="pizza-content">
+              <div class="pizza-rating">
+                <span class="stars">★★★★★</span>
+                <span class="review-count">(380+)</span>
+              </div>
+              <h3 class="pizza-name">BBQ Smokey Bacon & Pollo</h3>
+              <p class="pizza-ingredients">Pechuga de pollo a la brasa, tocino ahumado crujiente, cebolla morada caramelizada y deliciosa salsa BBQ casera.</p>
+              <div class="pizza-bottom">
+                <div class="pizza-price-box">
+                  <span class="price-label">Precio</span>
+                  <span class="pizza-price">$17.50</span>
+                </div>
+                <button class="btn-order add-to-cart-btn" data-id="pizza-3" data-name="BBQ Smokey Bacon & Pollo" data-price="17.50">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                  Añadir
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Pizza 4 -->
+          <article class="pizza-card" data-category="especiales">
+            <div class="pizza-img-wrapper">
+              <span class="pizza-badge gourmet">Gourmet</span>
+              <img src="https://images.unsplash.com/photo-1573821663912-569905455b1a?auto=format&fit=crop&w=700&q=80" alt="Pizza Cuatro Quesos D.O.P." class="pizza-img" loading="lazy">
+            </div>
+            <div class="pizza-content">
+              <div class="pizza-rating">
+                <span class="stars">★★★★★</span>
+                <span class="review-count">(290+)</span>
+              </div>
+              <h3 class="pizza-name">Quattro Formaggi D.O.P.</h3>
+              <p class="pizza-ingredients">Armoniosa mezcla de queso Gorgonzola dulce, Parmigiano Reggiano, Provolone ahumado y Fior di Latte italiano.</p>
+              <div class="pizza-bottom">
+                <div class="pizza-price-box">
+                  <span class="price-label">Precio</span>
+                  <span class="pizza-price">$16.80</span>
+                </div>
+                <button class="btn-order add-to-cart-btn" data-id="pizza-4" data-name="Quattro Formaggi D.O.P." data-price="16.80">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                  Añadir
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Pizza 5 -->
+          <article class="pizza-card" data-category="vegetarianas">
+            <div class="pizza-img-wrapper">
+              <span class="pizza-badge veggie">Vegetariana</span>
+              <img src="https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&w=700&q=80" alt="Pizza Ortolana Vegetariana" class="pizza-img" loading="lazy">
+            </div>
+            <div class="pizza-content">
+              <div class="pizza-rating">
+                <span class="stars">★★★★★</span>
+                <span class="review-count">(215+)</span>
+              </div>
+              <h3 class="pizza-name">Ortolana Rústica</h3>
+              <p class="pizza-ingredients">Calabacín grillado, berenjena asada, pimientos tricolor caramelizados, champiñones frescos y reducción de aceto balsámico.</p>
+              <div class="pizza-bottom">
+                <div class="pizza-price-box">
+                  <span class="price-label">Precio</span>
+                  <span class="pizza-price">$14.50</span>
+                </div>
+                <button class="btn-order add-to-cart-btn" data-id="pizza-5" data-name="Ortolana Rústica" data-price="14.50">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                  Añadir
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Pizza 6 -->
+          <article class="pizza-card" data-category="especiales">
+            <div class="pizza-img-wrapper">
+              <span class="pizza-badge premium">Premium</span>
+              <img src="https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?auto=format&fit=crop&w=700&q=80" alt="Pizza Prosciutto e Rúcula" class="pizza-img" loading="lazy">
+            </div>
+            <div class="pizza-content">
+              <div class="pizza-rating">
+                <span class="stars">★★★★★</span>
+                <span class="review-count">(340+)</span>
+              </div>
+              <h3 class="pizza-name">Prosciutto di Parma & Rúcula</h3>
+              <p class="pizza-ingredients">Finas lonchas de jamón serrano di Parma de 18 meses, rúcula fresca baby, lascas de parmesano y aceite de trufa blanca.</p>
+              <div class="pizza-bottom">
+                <div class="pizza-price-box">
+                  <span class="price-label">Precio</span>
+                  <span class="pizza-price">$18.90</span>
+                </div>
+                <button class="btn-order add-to-cart-btn" data-id="pizza-6" data-name="Prosciutto di Parma & Rúcula" data-price="18.90">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                  Añadir
+                </button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Opciones de recomendación del Chef Luigi -->
+    <section class="section ai-section" id="asistente-ia">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag ai-tag">👨‍🍳 Asistente Gastronómico</span>
+          <h2 class="section-title">Pregúntale al Chef Luigi</h2>
+          <p class="section-subtitle">Elige una opción y el chat de Botpress se abrirá para responder tu pregunta.</p>
+        </div>
+
+        <div class="ai-options-card">
+          <div class="ai-options-heading">
+            <div class="luigi-host luigi-host--lg" data-luigi-avatar></div>
+            <div>
+              <h3>¿Qué se te antoja?</h3>
+              <p>Explora las opciones para encontrar tu pizza ideal.</p>
+            </div>
+          </div>
+          <div class="ai-options-grid" aria-label="Opciones de recomendación">
+            <button type="button" class="ai-option-card" data-prompt="Recomiéndame pizzas para una cena especial en pareja.">
+              <span class="ai-option-icon" aria-hidden="true">👫</span>
+              <span><strong>En pareja</strong><span class="ai-option-description">Ideas para una cena especial para dos.</span></span>
+            </button>
+            <button type="button" class="ai-option-card" data-prompt="¿Qué pizzas vegetarianas me recomiendas?">
+              <span class="ai-option-icon" aria-hidden="true">🥗</span>
+              <span><strong>Vegetarianas</strong><span class="ai-option-description">Opciones deliciosas sin carne.</span></span>
+            </button>
+            <button type="button" class="ai-option-card" data-prompt="¿Cuál es la pizza más vendida y por qué es la favorita de los clientes?">
+              <span class="ai-option-icon" aria-hidden="true">⭐</span>
+              <span><strong>Más vendida</strong><span class="ai-option-description">Conoce la favorita de nuestros clientes.</span></span>
+            </button>
+            <button type="button" class="ai-option-card" data-prompt="Voy a organizar una fiesta. ¿Qué pizzas y combos me recomiendas para compartir con mis invitados?">
+              <span class="ai-option-icon" aria-hidden="true">🎉</span>
+              <span><strong>Para fiesta</strong><span class="ai-option-description">Combos para compartir con tus invitados.</span></span>
+            </button>
+            <button type="button" class="ai-option-card" data-prompt="¿Cuál es su horario de atención?">
+              <span class="ai-option-icon" aria-hidden="true">🕒</span>
+              <span><strong>Horario</strong><span class="ai-option-description">¿Cuál es su horario de atención?</span></span>
+            </button>
+            <button type="button" class="ai-option-card" data-prompt="¿Dónde están ubicados / cuál es su dirección?">
+              <span class="ai-option-icon" aria-hidden="true">📍</span>
+              <span><strong>Ubicación</strong><span class="ai-option-description">¿Dónde están ubicados / cuál es su dirección?</span></span>
+            </button>
+            <button type="button" class="ai-option-card" data-prompt="¿Tienen servicio a domicilio y cuánto cuesta?">
+              <span class="ai-option-icon" aria-hidden="true">🛵</span>
+              <span><strong>Servicio a domicilio</strong><span class="ai-option-description">¿Tienen servicio a domicilio y cuánto cuesta?</span></span>
+            </button>
+            <button type="button" class="ai-option-card" data-prompt="¿Cuánto tiempo tarda en llegar mi pedido?">
+              <span class="ai-option-icon" aria-hidden="true">⏱️</span>
+              <span><strong>Tiempo de entrega</strong><span class="ai-option-description">¿Cuánto tiempo tarda en llegar mi pedido?</span></span>
+            </button>
+            <button type="button" class="ai-option-card" data-prompt="¿Qué métodos de pago aceptan?">
+              <span class="ai-option-icon" aria-hidden="true">💳</span>
+              <span><strong>Métodos de pago</strong><span class="ai-option-description">¿Qué métodos de pago aceptan?</span></span>
+            </button>
+            <button type="button" class="ai-option-card" data-prompt="¿Tienen opciones vegetarianas?">
+              <span class="ai-option-icon" aria-hidden="true">🥗</span>
+              <span><strong>Opciones vegetarianas</strong><span class="ai-option-description">¿Tienen opciones vegetarianas?</span></span>
+            </button>
+            <button type="button" class="ai-option-card" data-prompt="¿Manejan opciones veganas?">
+              <span class="ai-option-icon" aria-hidden="true">🌱</span>
+              <span><strong>Opciones veganas</strong><span class="ai-option-description">¿Manejan opciones veganas?</span></span>
+            </button>
+            <button type="button" class="ai-option-card" data-prompt="¿Tienen masa sin gluten (para celíacos)?">
+              <span class="ai-option-icon" aria-hidden="true">🌾</span>
+              <span><strong>Masa sin gluten</strong><span class="ai-option-description">¿Tienen masa sin gluten (para celíacos)?</span></span>
+            </button>
+            <button type="button" class="ai-option-card" data-prompt="¿Puedo pedir una pizza mitad de un sabor y mitad de otro?">
+              <span class="ai-option-icon" aria-hidden="true">🍕</span>
+              <span><strong>Pizza mitad y mitad</strong><span class="ai-option-description">¿Puedo pedir una pizza mitad de un sabor y mitad de otro?</span></span>
+            </button>
+            <button type="button" class="ai-option-card" data-prompt="¿Puedo agregar o quitar ingredientes de una pizza?">
+              <span class="ai-option-icon" aria-hidden="true">➕</span>
+              <span><strong>Personalizar ingredientes</strong><span class="ai-option-description">¿Puedo agregar o quitar ingredientes de una pizza?</span></span>
+            </button>
+            <button type="button" class="ai-option-card" data-prompt="¿Tienen pizza hawaiana o con piña?">
+              <span class="ai-option-icon" aria-hidden="true">🍍</span>
+              <span><strong>Pizza hawaiana</strong><span class="ai-option-description">¿Tienen pizza hawaiana o con piña?</span></span>
+            </button>
+            <button type="button" class="ai-option-card" data-prompt="¿Venden rebanadas individuales?">
+              <span class="ai-option-icon" aria-hidden="true">🍕</span>
+              <span><strong>Rebanadas individuales</strong><span class="ai-option-description">¿Venden rebanadas individuales?</span></span>
+            </button>
+            <button type="button" class="ai-option-card" data-prompt="¿Hacen reservaciones para grupos o cumpleaños?">
+              <span class="ai-option-icon" aria-hidden="true">🎂</span>
+              <span><strong>Reservaciones</strong><span class="ai-option-description">¿Hacen reservaciones para grupos o cumpleaños?</span></span>
+            </button>
+            <button type="button" class="ai-option-card" data-prompt="¿Tienen estacionamiento?">
+              <span class="ai-option-icon" aria-hidden="true">🅿️</span>
+              <span><strong>Estacionamiento</strong><span class="ai-option-description">¿Tienen estacionamiento?</span></span>
+            </button>
+            <button type="button" class="ai-option-card" data-prompt="¿Pueden emitir factura fiscal?">
+              <span class="ai-option-icon" aria-hidden="true">🧾</span>
+              <span><strong>Factura fiscal</strong><span class="ai-option-description">¿Pueden emitir factura fiscal?</span></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Sección de Por Qué Elegirnos -->
+    <section class="section why-us-section" id="nosotros">
+      <div class="container">
+        <div class="why-us-grid">
+          <div class="why-us-card">
+            <div class="why-icon">🪵</div>
+            <h3>Horno de Piedra Volcánica</h3>
+            <p>Horneamos a más de 450°C durante solo 90 segundos para lograr bordes crujientes y alveolados estilo Nápoles.</p>
+          </div>
+          <div class="why-us-card">
+            <div class="why-icon">🌾</div>
+            <h3>Masa Madre de 48 Horas</h3>
+            <p>Fermentación lenta y natural que garantiza una digestión ligera, textura esponjosa y sabor inigualable.</p>
+          </div>
+          <div class="why-us-card">
+            <div class="why-icon">🛵</div>
+            <h3>Delivery Rápido y Caliente</h3>
+            <p>Empaque térmico especial que mantiene la temperatura y la corteza crujiente hasta la puerta de tu hogar.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Banner de Suscripción / Newsletter -->
+    <section class="newsletter-section">
+      <div class="container newsletter-content">
+        <div class="newsletter-text">
+          <h2>¿Quieres un 15% de descuento adicional?</h2>
+          <p>Suscríbete a nuestro boletín y recibe promociones secretas cada viernes en tu correo.</p>
+        </div>
+        <form class="newsletter-form" id="newsletterForm">
+          <input type="email" placeholder="Ingresa tu correo electrónico..." required class="newsletter-input">
+          <button type="submit" class="btn btn-primary">Suscribirme</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" id="contacto">
+    <div class="container footer-container">
+      <div class="footer-col brand-col">
+        <div class="footer-logo">
+          <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2L2 22h20L12 2z" fill="#e63946" stroke="#e63946"/>
+            <circle cx="12" cy="11" r="1.5" fill="#fff"/>
+            <circle cx="9" cy="16" r="1.5" fill="#fff"/>
+            <circle cx="15" cy="16" r="1.5" fill="#fff"/>
+          </svg>
+          <span>Bella <span>Napoli</span></span>
+        </div>
+        <p class="footer-description">
+          Pasión italiana en cada rebanada. Elaboramos pizzas artesanales con ingredientes de la más alta calidad desde 2012.
+        </p>
+        <div class="social-links">
+          <a href="#" aria-label="Facebook" class="social-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" aria-label="Instagram" class="social-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+          </a>
+          <a href="#" aria-label="TikTok" class="social-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.88 2.89 2.89 0 0 1-2.88-2.88 2.89 2.89 0 0 1 2.88-2.88c.32 0 .63.05.92.14V9.45a6.45 6.45 0 0 0-.92-.07 6.34 6.34 0 0 0-6.33 6.34 6.34 6.34 0 0 0 6.33 6.34 6.34 6.34 0 0 0 6.33-6.34V8.77a8.28 8.28 0 0 0 4.79 1.5V6.82a4.92 4.92 0 0 1-1.02-.13z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-title">Enlaces Rápidos</h4>
+        <ul class="footer-links">
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#ofertas">Ofertas y Combos</a></li>
+          <li><a href="#populares">Pizzas Populares</a></li>
+          <li><a href="#asistente-ia">Asistente IA Chef Luigi</a></li>
+          <li><a href="#nosotros">Nuestra Historia</a></li>
+          <li><a href="#contacto">Contacto & Sucursales</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-title">Horario de Atención</h4>
+        <ul class="footer-schedule">
+          <li><span>Lunes a Jueves:</span> 12:00 PM - 10:30 PM</li>
+          <li><span>Viernes y Sábados:</span> 12:00 PM - 11:30 PM</li>
+          <li><span>Domingos:</span> 1:00 PM - 10:00 PM</li>
+        </ul>
+        <div class="delivery-status">
+          <span class="status-dot"></span> Cocina abierta ahora
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-title">Contáctanos</h4>
+        <ul class="footer-contact">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <span>Av. Italia 450, Col. Roma Norte, Ciudad de México</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span>(55) 8900-PIZZA / (55) 4321-7890</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            <span>hola@bellanapolipizza.com</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-content">
+        <p>&copy; 2026 Bella Napoli Pizzería. Todos los derechos reservados.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Términos y Condiciones</a>
+          <a href="#">Aviso de Privacidad</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal / Drawer de Carrito -->
+  <div class="cart-drawer-overlay" id="cartOverlay"></div>
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-drawer-header">
+      <h3>Tu Pedido (<span id="cartDrawerCount">0</span>)</h3>
+      <button class="cart-close-btn" id="closeCartBtn">&times;</button>
+    </div>
+    <div class="cart-items" id="cartItemsContainer">
+      <div class="empty-cart-message">
+        <p>Tu carrito está vacío 🍕</p>
+        <small>Elige tus pizzas y ofertas favoritas para comenzar.</small>
+      </div>
+    </div>
+    <div class="cart-drawer-footer">
+      <div class="cart-total-row">
+        <span>Total estimado:</span>
+        <span class="cart-total-price" id="cartTotalPrice">$0.00</span>
+      </div>
+      <button class="btn btn-primary btn-block" id="checkoutBtn">Confirmar y Enviar Pedido</button>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast">
+    <span class="toast-icon">✓</span>
+    <span class="toast-message" id="toastMessage">¡Pizza añadida con éxito!</span>
+  </div>
+  <!-- Botpress Cloud Webchat flotante -->
+  <script src="https://cdn.botpress.cloud/webchat/v5.0/inject.js"></script>
+  <script>
+    // El archivo publicado declara el modo incrustado; quitar ese ID activa el lanzador flotante.
+    const originalBotpressInit = window.botpress.init.bind(window.botpress);
+    window.botpress.init = (options) => {
+      const updatedOptions = { ...options, configuration: { ...options.configuration } };
+      delete updatedOptions.configuration.embeddedChatId;
+      return originalBotpressInit(updatedOptions);
+    };
+  </script>
+  <script src="https://files.bpcontent.cloud/2026/11/18/20/20261118203943-EDTF5RXS.js" defer></script>
+  <script>
+    (() => {
+      const queue = [];
+      let ready = false;
+      let sending = false;
+      const sendQueuedPrompts = async () => {
+        if (!ready || sending || !window.botpress?.sendMessage) return;
+        sending = true;
+        try {
+          while (queue.length) await window.botpress.sendMessage(queue.shift());
+        } catch (error) {
+          console.error('No se pudo enviar la sugerencia a Botpress.', error);
+        } finally {
+          sending = false;
+          if (queue.length) sendQueuedPrompts();
+        }
+      };
+      const attach = () => {
+        if (!window.botpress?.on || !window.botpress?.open) {
+          window.setTimeout(attach, 200);
+          return;
+        }
+        window.botpress.on('webchat:ready', () => {
+          ready = true;
+          sendQueuedPrompts();
+        });
+        document.querySelectorAll('.ai-option-card[data-prompt]').forEach((button) => {
+          button.addEventListener('click', () => {
+            queue.push(button.dataset.prompt);
+            window.botpress.open();
+            if (ready) sendQueuedPrompts();
+          });
+        });
+      };
+      attach();
+    })();
+  </script>
+  <script src="script.js"></script>
+  <script src="luigi-avatar.js?v=2" defer></script>
+</body>
+</html>
+
+
